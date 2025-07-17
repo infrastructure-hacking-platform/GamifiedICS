@@ -1,2 +1,3 @@
-2025/07/10-16:40:06.392 47e0 Creating DB C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb since it was missing.
-2025/07/10-16:40:06.439 47e0 Reusing MANIFEST C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2025/07/10-18:08:17.642 200 Reusing MANIFEST C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2025/07/10-18:08:17.642 200 Recovering log #3
+2025/07/10-18:08:17.643 200 Reusing old log C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000003.log 
