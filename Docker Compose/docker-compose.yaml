@@ -1,0 +1,411 @@
+services:
+  sql-server_EV-charger:
+    container_name: sql-server_EV-charger
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_EV-charger
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_EV-charger:/var/lib/mysql
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.3
+
+  wordpress_EV-charger:
+    container_name: wordpress_EV-charger
+    image: wordpress:latest
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    privileged: true
+    ports:
+      - "8000:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_EV-charger
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_EV-charger
+    volumes:
+      - wordpress_data_EV-charger:/var/www/html
+    depends_on:
+      - sql-server_EV-charger
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.2
+
+  Inverter_EV-charger:
+    image: rastasheep/ubuntu-sshd
+    container_name: Inverter_EV-charger
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.100.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.10
+
+  Communications_EV-charger:
+    image: rastasheep/ubuntu-sshd
+    container_name: Communications_EV-charger
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.100.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.11
+
+  OpenPLC_EV-charger:
+    image: openplc-docker
+    container_name: OpenPLC_EV-charger
+    ports:
+      - "8083:8080"
+      - "502:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/user/test/OpenPLC:/home/openplc/scripts
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.200
+
+
+
+
+
+
+
+
+
+
+  sql-server_Monorail:
+    container_name: sql-server_Monorail
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_Monorail
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_Monorail:/var/lib/mysql
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.3
+
+  wordpress_Monorail:
+    container_name: wordpress_Monorail
+    image: wordpress:latest
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    privileged: true
+    ports:
+      - "8001:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_Monorail
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_Monorail
+    volumes:
+      - wordpress_data_Monorail:/var/www/html
+    depends_on:
+      - sql-server_Monorail
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.2
+
+  placeholderPLC_Monorail:
+    image: rastasheep/ubuntu-sshd
+    container_name: placeholderPLC_Monorail
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.101.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.10
+
+  OpenPLC_Monorail:
+    image: openplc-docker
+    container_name: OpenPLC_Monorail
+    ports:
+      - "8084:8080"
+      - "503:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/user/test/OpenPLC:/home/openplc/scripts
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.200
+
+
+
+
+
+
+
+
+
+
+  sql-server_Power-plant:
+    container_name: sql-server_Power-plant
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_Power-plant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_Power-plant:/var/lib/mysql
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.3
+
+  wordpress_Power-plant:
+    container_name: wordpress_Power-plant
+    image: wordpress:latest
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    privileged: true
+    ports:
+      - "8002:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_Power-plant
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_Power-plant
+    volumes:
+      - wordpress_data_Power-plant:/var/www/html
+    depends_on:
+      - sql-server_Power-plant
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.2
+
+  Cooling-pump_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Cooling-pump_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.10
+
+  Geiger-counter_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Geiger-counter_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.11
+
+  Heat-sensor_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Heat-sensor_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.12
+
+  Inverter_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Inverter_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.13
+
+  Steam-turbine-CS_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Steam-turbine-CS_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.14
+
+  OpenPLC_Power-plant:
+    image: openplc-docker
+    container_name: OpenPLC_Power-plant
+    ports:
+      - "8085:8080"
+      - "504:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/user/test/OpenPLC:/home/openplc/scripts
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.200
+
+
+
+
+
+
+
+
+
+
+volumes:
+  sql-server_data_EV-charger:
+  sql-server_data_Monorail:
+  sql-server_data_Power-plant:
+  wordpress_data_EV-charger:
+  wordpress_data_Monorail:
+  wordpress_data_Power-plant:
+
+networks:
+  network_EV-charger:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+  network_Monorail:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.101.0/24
+  network_Power-plant:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.102.0/24
