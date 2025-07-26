@@ -3,5 +3,10 @@
 	"EngineAssociation": "5.5",
 	"Category": "",
 	"Description": "",
-	"Plugins": []
+	"Plugins": [
+		{
+			"Name": "WebBrowserWidget",
+			"Enabled": true
+		}
+	]
 }
