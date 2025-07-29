@@ -1,0 +1,476 @@
+services:
+  sql-server_EV-charger:
+    image: mysql
+    container_name: sql-server_EV-charger
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_EV-charger
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_EV-charger:/var/lib/mysql
+      - ./init/db_EV-charger.sql:/docker-entrypoint-initdb.d/db_EV-charger.sql:ro
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.3
+
+  wordpress_EV-charger:
+    image: wordpress:latest
+    container_name: wordpress_EV-charger
+    privileged: true
+    ports:
+      - "8000:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_EV-charger
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_EV-charger
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    volumes:
+      #- wordpress_data_EV-charger:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/EV-charger/html:/var/www/html
+    depends_on:
+      - sql-server_EV-charger
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.2
+
+  Inverter_EV-charger:
+    image: rastasheep/ubuntu-sshd
+    container_name: Inverter_EV-charger
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.100.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.10
+
+  Communications_EV-charger:
+    image: rastasheep/ubuntu-sshd
+    container_name: Communications_EV-charger
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.100.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.11
+
+  OpenPLC_EV-charger:
+    image: openplc-docker
+    container_name: OpenPLC_EV-charger
+    ports:
+      - "8083:8080"
+      - "502:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.200
+
+
+
+
+
+
+
+
+
+
+  sql-server_Monorail:
+    image: mysql
+    container_name: sql-server_Monorail
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_Monorail
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_Monorail:/var/lib/mysql
+      - ./init/db_Monorail.sql:/docker-entrypoint-initdb.d/db_Monorail.sql:ro
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.3
+
+  wordpress_Monorail:
+    image: wordpress:latest
+    container_name: wordpress_Monorail
+    privileged: true
+    ports:
+      - "8001:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_Monorail
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_Monorail
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    volumes:
+      #- wordpress_data_Monorail:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/Monorail/html:/var/www/html
+    depends_on:
+      - sql-server_Monorail
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.2
+
+  placeholderPLC_Monorail:
+    image: rastasheep/ubuntu-sshd
+    container_name: placeholderPLC_Monorail
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.101.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.10
+
+  OpenPLC_Monorail:
+    image: openplc-docker
+    container_name: OpenPLC_Monorail
+    ports:
+      - "8084:8080"
+      - "503:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+    networks:
+      network_Monorail:
+        ipv4_address: 192.168.101.200
+
+
+
+
+
+
+
+
+
+
+  sql-server_Power-plant:
+    image: mysql
+    container_name: sql-server_Power-plant
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db_Power-plant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - sql-server_data_Power-plant:/var/lib/mysql
+      - ./init/db_Power-plant.sql:/docker-entrypoint-initdb.d/db_Power-plant.sql:ro
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.3
+
+  wordpress_Power-plant:
+    image: wordpress:latest
+    container_name: wordpress_Power-plant
+    privileged: true
+    ports:
+      - "8002:80"
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      WORDPRESS_DB_HOST: sql-server_Power-plant
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db_Power-plant
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 80 -j ACCEPT &&
+               apache2-foreground"
+    volumes:
+      #- wordpress_data_Power-plant:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/Power-plant/html:/var/www/html
+    depends_on:
+      - sql-server_Power-plant
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.2
+
+  Cooling-pump_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Cooling-pump_Power-plant
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.10
+
+  Geiger-counter_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Geiger-counter_Power-plant
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.11
+
+  Heat-sensor_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Heat-sensor_Power-plant
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.12
+
+  Inverter_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Inverter_Power-plant
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.13
+
+  Steam-turbine-CS_Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Steam-turbine-CS_Power-plant
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               iptables -P INPUT DROP &&
+               iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT &&
+               iptables -A INPUT -i lo -j ACCEPT &&
+               iptables -A INPUT -p tcp --dport 502 -s 192.168.102.0/24 -j ACCEPT &&
+               /usr/sbin/sshd -D"
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.14
+
+  OpenPLC_Power-plant:
+    image: openplc-docker
+    container_name: OpenPLC_Power-plant
+    ports:
+      - "8085:8080"
+      - "504:502"
+    command: "/home/openplc/run.sh"
+    volumes:
+      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+    networks:
+      network_Power-plant:
+        ipv4_address: 192.168.102.200
+
+
+
+
+
+
+
+
+
+
+  guacd:
+    image: guacamole/guacd
+    container_name: guacd
+
+  guac_mysql:
+    image: mysql
+    container_name: guac_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: guac_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - guac_mysql_data:/var/lib/mysql
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole
+    depends_on:
+      - guacd
+      - guac_mysql
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOSTNAME: guac_mysql
+      MYSQL_DATABASE: guac_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      GUACD_HOSTNAME: guacd
+      GUACD_PORT: 4822
+
+  Laptop:
+    image: rastasheep/ubuntu-sshd
+    container_name: Laptop
+    command: >
+      bash -c "apt update &&
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               /usr/sbin/sshd -D"
+    volumes:
+      - Laptop_data:/root
+    depends_on:
+      - guacd
+      - guac_mysql
+      - guacamole
+
+
+
+
+
+
+
+
+
+
+volumes:
+  sql-server_data_EV-charger:
+  sql-server_data_Monorail:
+  sql-server_data_Power-plant:
+  #wordpress_data_EV-charger:
+  #wordpress_data_Monorail:
+  #wordpress_data_Power-plant:
+  guac_mysql_data:
+  Laptop_data:
+
+networks:
+  network_EV-charger:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+  network_Monorail:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.101.0/24
+  network_Power-plant:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.102.0/24
