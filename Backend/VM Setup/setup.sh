@@ -1,3 +1,19 @@
+echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
+sudo mkdir wordpressData
+
+echo "--------------------CHANGING OWNER TO 'KALI'--------------------"
+sudo chown kali:kali ./wordpressData
+
+echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
+sudo tar -xf EV-charger.tar -C ./wordpressData
+sudo tar -xf Monorail.tar -C ./wordpressData
+sudo tar -xf Power-plant.tar -C ./wordpressData
+
+echo "--------------------DELETING WORDPRESS .TAR FILES--------------------"
+sudo rm EV-charger.tar Monorail.tar Power-plant.tar
+
+
+
 echo "--------------------UPDATING PACKAGE LIST--------------------"
 sudo apt update
 
@@ -18,13 +34,10 @@ ARCH=$(uname -m)
 echo "--------------------DOWNLOADING DOCKER 2.0--------------------"
 sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$ARCH -o /usr/local/lib/docker/cli-plugins/docker-compose
 
-echo "--------------------GRANTING DOCKER COMPOSE EXECUTE PERMISSIONS (not necessary?)--------------------"
+echo "--------------------GRANTING DOCKER COMPOSE EXECUTE PERMISSIONS--------------------"
 sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
 
-
-echo "--------------------CREATING INIT DIRECTORY--------------------"
-sudo mkdir init
 
 echo "--------------------CDING INTO INIT--------------------"
 cd init
