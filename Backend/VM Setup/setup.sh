@@ -5,12 +5,12 @@ echo "--------------------CHANGING OWNER TO 'KALI'--------------------"
 sudo chown kali:kali ./wordpressData
 
 echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
-sudo tar -xf EV-charger.tar -C ./wordpressData
-sudo tar -xf Monorail.tar -C ./wordpressData
-sudo tar -xf Power-plant.tar -C ./wordpressData
+sudo tar -xf wordpress-data_EV-charger.tar -C ./wordpressData
+sudo tar -xf wordpress-data_Monorail.tar -C ./wordpressData
+sudo tar -xf wordpress-data_Power-plant.tar -C ./wordpressData
 
 echo "--------------------DELETING WORDPRESS .TAR FILES--------------------"
-sudo rm EV-charger.tar Monorail.tar Power-plant.tar
+sudo rm wordpress-data_EV-charger.tar wordpress-data_Monorail.tar wordpress-data_Power-plant.tar
 
 
 

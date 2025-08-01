@@ -42,7 +42,7 @@ services:
                apache2-foreground"
     volumes:
       #- wordpress_data_EV-charger:/var/www/html
-      - /home/kali/Desktop/GamifiedICS/wordpressData/EV-charger/html:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/wordpress-data_EV-charger/html:/var/www/html
     depends_on:
       - sql-server_EV-charger
     networks:
@@ -157,7 +157,7 @@ services:
                apache2-foreground"
     volumes:
       #- wordpress_data_Monorail:/var/www/html
-      - /home/kali/Desktop/GamifiedICS/wordpressData/Monorail/html:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/wordpress-data_Monorail/html:/var/www/html
     depends_on:
       - sql-server_Monorail
     networks:
@@ -251,7 +251,7 @@ services:
                apache2-foreground"
     volumes:
       #- wordpress_data_Power-plant:/var/www/html
-      - /home/kali/Desktop/GamifiedICS/wordpressData/Power-plant/html:/var/www/html
+      - /home/kali/Desktop/GamifiedICS/wordpressData/wordpress-data_Power-plant/html:/var/www/html
     depends_on:
       - sql-server_Power-plant
     networks:
