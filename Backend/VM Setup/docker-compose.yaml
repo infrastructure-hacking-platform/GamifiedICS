@@ -390,54 +390,248 @@ services:
 
 
 
-  guacd:
+  guacd_Laptop:
     image: guacamole/guacd
-    container_name: guacd
+    container_name: guacd_Laptop
 
-  guac_mysql:
+  guac_mysql_Laptop:
     image: mysql
-    container_name: guac_mysql
+    container_name: guac_mysql_Laptop
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: guac_db
+      MYSQL_DATABASE: guac_db_Laptop
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     volumes:
-      - guac_mysql_data:/var/lib/mysql
+      - guac_mysql_data_Laptop:/var/lib/mysql
       - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
 
-  guacamole:
+  guacamole_Laptop:
     image: guacamole/guacamole
-    container_name: guacamole
+    container_name: guacamole_Laptop
     depends_on:
-      - guacd
-      - guac_mysql
+      - guacd_Laptop
+      - guac_mysql_Laptop
     ports:
       - "8080:8080"
     environment:
-      MYSQL_HOSTNAME: guac_mysql
-      MYSQL_DATABASE: guac_db
+      MYSQL_HOSTNAME: guac_mysql_Laptop
+      MYSQL_DATABASE: guac_db_Laptop
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-      GUACD_HOSTNAME: guacd
+      GUACD_HOSTNAME: guacd_Laptop
       GUACD_PORT: 4822
 
   Laptop:
     image: rastasheep/ubuntu-sshd
     container_name: Laptop
     command: >
-      bash -c "apt update &&
+      bash -c "useradd -m -s /bin/bash user
+               echo "user:password" | chpasswd
+               chmod 755 /home/user
+               usermod -aG sudo user
+               apt update &&
+               apt install sudo
                apt install -y net-tools &&
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
                /usr/sbin/sshd -D"
     volumes:
-      - Laptop_data:/root
+      - Laptop_data:/home/user
     depends_on:
-      - guacd
-      - guac_mysql
-      - guacamole
+      - guacd_Laptop
+      - guac_mysql_Laptop
+      - guacamole_Laptop
+
+
+
+
+
+
+
+
+
+
+  guacd_EV-charger:
+    image: guacamole/guacd
+    container_name: guacd_EV-charger
+
+  guac_mysql_EV-charger:
+    image: mysql
+    container_name: guac_mysql_EV-charger
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: guac_db_EV-charger
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - guac_mysql_data_EV-charger:/var/lib/mysql
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+
+  guacamole_EV-charger:
+    image: guacamole/guacamole
+    container_name: guacamole_EV-charger
+    depends_on:
+      - guacd_EV-charger
+      - guac_mysql_EV-charger
+    ports:
+      - "8090:8080"
+    environment:
+      MYSQL_HOSTNAME: guac_mysql_EV-charger
+      MYSQL_DATABASE: guac_db_EV-charger
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      GUACD_HOSTNAME: guacd_EV-charger
+      GUACD_PORT: 4822
+
+  EV-charger:
+    image: rastasheep/ubuntu-sshd
+    container_name: EV-charger
+    command: >
+      bash -c "useradd -m -s /bin/bash user
+               echo "user:password" | chpasswd
+               chmod 755 /home/user
+               usermod -aG sudo user
+               apt update &&
+               apt install sudo
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               /usr/sbin/sshd -D"
+    volumes:
+      - EV-charger_data:/home/user
+    depends_on:
+      - guacd_EV-charger
+      - guac_mysql_EV-charger
+      - guacamole_EV-charger
+
+
+
+
+
+
+
+
+
+
+  guacd_Monorail:
+    image: guacamole/guacd
+    container_name: guacd_Monorail
+
+  guac_mysql_Monorail:
+    image: mysql
+    container_name: guac_mysql_Monorail
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: guac_db_Monorail
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - guac_mysql_data_Monorail:/var/lib/mysql
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+
+  guacamole_Monorail:
+    image: guacamole/guacamole
+    container_name: guacamole_Monorail
+    depends_on:
+      - guacd_Monorail
+      - guac_mysql_Monorail
+    ports:
+      - "8091:8080"
+    environment:
+      MYSQL_HOSTNAME: guac_mysql_Monorail
+      MYSQL_DATABASE: guac_db_Monorail
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      GUACD_HOSTNAME: guacd_Monorail
+      GUACD_PORT: 4822
+
+  Monorail:
+    image: rastasheep/ubuntu-sshd
+    container_name: Monorail
+    command: >
+      bash -c "useradd -m -s /bin/bash user
+               echo "user:password" | chpasswd
+               chmod 755 /home/user
+               usermod -aG sudo user
+               apt update &&
+               apt install sudo
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               /usr/sbin/sshd -D"
+    volumes:
+      - Monorail_data:/home/user
+    depends_on:
+      - guacd_Monorail
+      - guac_mysql_Monorail
+      - guacamole_Monorail
+
+
+
+
+
+
+
+
+
+
+  guacd_Power-plant:
+    image: guacamole/guacd
+    container_name: guacd_Power-plant
+
+  guac_mysql_Power-plant:
+    image: mysql
+    container_name: guac_mysql_Power-plant
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: guac_db_Power-plant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - guac_mysql_data_Power-plant:/var/lib/mysql
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+
+  guacamole_Power-plant:
+    image: guacamole/guacamole
+    container_name: guacamole_Power-plant
+    depends_on:
+      - guacd_Power-plant
+      - guac_mysql_Power-plant
+    ports:
+      - "8092:8080"
+    environment:
+      MYSQL_HOSTNAME: guac_mysql_Power-plant
+      MYSQL_DATABASE: guac_db_Power-plant
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      GUACD_HOSTNAME: guacd_Power-plant
+      GUACD_PORT: 4822
+
+  Power-plant:
+    image: rastasheep/ubuntu-sshd
+    container_name: Power-plant
+    command: >
+      bash -c "useradd -m -s /bin/bash user
+               echo "user:password" | chpasswd
+               chmod 755 /home/user
+               usermod -aG sudo user
+               apt update &&
+               apt install sudo
+               apt install -y net-tools &&
+               apt install -y iputils-ping &&
+               apt install -y iptables &&
+               apt install -y nmap &&
+               /usr/sbin/sshd -D"
+    volumes:
+      - Power-plant_data:/home/user
+    depends_on:
+      - guacd_Power-plant
+      - guac_mysql_Power-plant
+      - guacamole_Power-plant
 
 
 
@@ -455,8 +649,14 @@ volumes:
   #wordpress_data_EV-charger:
   #wordpress_data_Monorail:
   #wordpress_data_Power-plant:
-  guac_mysql_data:
+  guac_mysql_data_Laptop:
+  guac_mysql_data_EV-charger:
+  guac_mysql_data_Monorail:
+  guac_mysql_data_Power-plant:
   Laptop_data:
+  EV-charger_data:
+  Monorail_data:
+  Power-plant_data:
 
 networks:
   network_EV-charger:
