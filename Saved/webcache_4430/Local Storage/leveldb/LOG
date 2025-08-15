@@ -1,3 +1,2 @@
-2025/07/28-15:10:54.904 5dc Reusing MANIFEST C:/Users/Thaumaturge/Desktop/Senior Project/ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2025/07/28-15:10:54.914 5dc Recovering log #12
-2025/07/28-15:10:54.915 5dc Reusing old log C:/Users/Thaumaturge/Desktop/Senior Project/ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000012.log 
+2025/08/07-17:52:45.376 9f4 Creating DB C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb since it was missing.
+2025/08/07-17:52:45.401 9f4 Reusing MANIFEST C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
