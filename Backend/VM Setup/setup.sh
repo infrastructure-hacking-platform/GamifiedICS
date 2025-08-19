@@ -1,16 +1,27 @@
+echo "--------------------CREATING USER/GROUP ENVIRONMENT VARIABLES--------------------"
+user=$(whoami)
+group=$(id -gn)
+
+
+
+echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER--------------------"
+sudo mkdir GamifiedICS
+sudo chown $user:$group ./GamifiedICS
+
+echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER--------------------"
+sudo mv wordpress-data_EV-charger.tar wordpress-data_Monorail.tar wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml ./GamifiedICS
+cd GamifiedICS
+
 echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
 sudo mkdir wordpressData
 
-echo "--------------------CHANGING OWNER TO 'KALI'--------------------"
-sudo chown kali:kali ./wordpressData
+echo "--------------------CHANGING OWNER TO CURRENTLY LOGGED IN USER--------------------"
+sudo chown $user:$group ./wordpressData
 
 echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
 sudo tar -xf wordpress-data_EV-charger.tar -C ./wordpressData
 sudo tar -xf wordpress-data_Monorail.tar -C ./wordpressData
 sudo tar -xf wordpress-data_Power-plant.tar -C ./wordpressData
-
-echo "--------------------DELETING WORDPRESS .TAR FILES--------------------"
-sudo rm wordpress-data_EV-charger.tar wordpress-data_Monorail.tar wordpress-data_Power-plant.tar
 
 
 
