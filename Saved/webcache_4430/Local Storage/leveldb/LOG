@@ -1,3 +1,2 @@
-2025/07/20-14:22:27.005 6774 Reusing MANIFEST C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2025/07/20-14:22:27.006 6774 Recovering log #3
-2025/07/20-14:22:27.006 6774 Reusing old log C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000003.log 
+2025/08/07-17:52:45.376 9f4 Creating DB C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb since it was missing.
+2025/08/07-17:52:45.401 9f4 Reusing MANIFEST C:/Users/kensh/Documents/GitHub/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
