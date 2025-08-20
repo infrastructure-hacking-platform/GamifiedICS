@@ -245,7 +245,7 @@ services:
     image: rastasheep/ubuntu-sshd
     container_name: Laptop
     command: >
-      bash -c "useradd -m -s /bin/bash user &&
+      bash -c "id -u user &>dev/null || useradd -s /bin/bash user &&
                echo "user:password" | chpasswd &&
                chmod 755 /home/user &&
                usermod -aG sudo user &&
@@ -308,7 +308,7 @@ services:
     image: rastasheep/ubuntu-sshd
     container_name: EV-charger
     command: >
-      bash -c "useradd -m -s /bin/bash user &&
+      bash -c "id -u user &>dev/null || useradd -s /bin/bash user &&
                echo "user:password" | chpasswd &&
                chmod 755 /home/user &&
                usermod -aG sudo user &&
@@ -371,7 +371,7 @@ services:
     image: rastasheep/ubuntu-sshd
     container_name: Monorail
     command: >
-      bash -c "useradd -m -s /bin/bash user &&
+      bash -c "id -u user &>dev/null || useradd -s /bin/bash user &&
                echo "user:password" | chpasswd &&
                chmod 755 /home/user &&
                usermod -aG sudo user &&
@@ -434,7 +434,7 @@ services:
     image: rastasheep/ubuntu-sshd
     container_name: Power-plant
     command: >
-      bash -c "useradd -m -s /bin/bash user &&
+      bash -c "id -u user &>dev/null || useradd -s /bin/bash user &&
                echo "user:password" | chpasswd &&
                chmod 755 /home/user &&
                usermod -aG sudo user &&

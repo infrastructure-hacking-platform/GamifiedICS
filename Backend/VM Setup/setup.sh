@@ -5,22 +5,20 @@ group=$(id -gn)
 
 
 echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER--------------------"
-sudo mkdir GamifiedICS
+sudo mkdir -p GamifiedICS
 sudo chown $user:$group ./GamifiedICS
 
 echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER--------------------"
-sudo mv wordpress-data_EV-charger.tar wordpress-data_Monorail.tar wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml ./GamifiedICS
+sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml ./GamifiedICS
 cd GamifiedICS
 
 echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
-sudo mkdir wordpressData
+sudo mkdir -p wordpressData
 
 echo "--------------------CHANGING OWNER TO CURRENTLY LOGGED IN USER--------------------"
 sudo chown $user:$group ./wordpressData
 
 echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
-sudo tar -xf wordpress-data_EV-charger.tar -C ./wordpressData
-sudo tar -xf wordpress-data_Monorail.tar -C ./wordpressData
 sudo tar -xf wordpress-data_Power-plant.tar -C ./wordpressData
 
 
