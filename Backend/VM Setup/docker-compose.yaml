@@ -33,6 +33,7 @@ services:
                /home/openplc/run.sh"
     volumes:
       - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+      - /home/kali/Desktop/GamifiedICS/init/OpenPLC/EV-Charger_Communications/webserver:/home/openplc/OpenPLC_v3/webserver
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.11
