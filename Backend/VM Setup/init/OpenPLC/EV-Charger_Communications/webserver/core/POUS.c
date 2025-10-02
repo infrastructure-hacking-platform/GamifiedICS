@@ -1,0 +1,33 @@
+void EV_CHARGER_COMMS_init__(EV_CHARGER_COMMS *data__, BOOL retain) {
+  __INIT_LOCATED(INT,__IW100,data__->VOLTAGE,retain)
+  __INIT_LOCATED_VALUE(data__->VOLTAGE,0)
+  __INIT_LOCATED(BOOL,__IX100_2,data__->INCREASING,retain)
+  __INIT_LOCATED_VALUE(data__->INCREASING,__BOOL_LITERAL(FALSE))
+  __INIT_LOCATED(INT,__IW101,data__->EXPLOSION_THRESHOLD,retain)
+  __INIT_LOCATED_VALUE(data__->EXPLOSION_THRESHOLD,0)
+  __INIT_LOCATED(INT,__IW102,data__->CYCLE_COUNT,retain)
+  __INIT_LOCATED_VALUE(data__->CYCLE_COUNT,0)
+  __INIT_LOCATED(BOOL,__IX100_0,data__->INVERTER_COMPROMISED,retain)
+  __INIT_LOCATED_VALUE(data__->INVERTER_COMPROMISED,__BOOL_LITERAL(FALSE))
+  __INIT_LOCATED(BOOL,__IX100_1,data__->EXPLOSION,retain)
+  __INIT_LOCATED_VALUE(data__->EXPLOSION,__BOOL_LITERAL(FALSE))
+}
+
+// Code part
+void EV_CHARGER_COMMS_body__(EV_CHARGER_COMMS *data__) {
+  // Initialise TEMP variables
+
+  if (__GET_LOCATED(data__->INVERTER_COMPROMISED,)) {
+    __SET_LOCATED(data__->,VOLTAGE,,(__GET_LOCATED(data__->VOLTAGE,) + 1));
+  };
+
+  goto __end;
+
+__end:
+  return;
+} // EV_CHARGER_COMMS_body__() 
+
+
+
+
+
