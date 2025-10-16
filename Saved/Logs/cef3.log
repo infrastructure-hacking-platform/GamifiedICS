@@ -1,2 +1,1 @@
-[1014/201855.406:ERROR:os_crypt_win.cc(93)] Failed to decrypt: Key not valid for use in specified state. (0x8009000B)
-[1014/202055.651:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[1015/222447.532:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
