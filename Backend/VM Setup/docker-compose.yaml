@@ -6,9 +6,9 @@ services:
       - "8010:8080"
       - "510:502"
     command: >
-      bash -c "/home/openplc/run.sh"
+      bash -c "/home/openplc/scripts/run.sh"
     volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+      - /home/kali/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Inverter/openplc:/home/openplc
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.10
@@ -30,47 +30,45 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
-               /home/openplc/run.sh"
+               /home/openplc/scripts/run.sh"
     volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-      - /home/kali/Desktop/GamifiedICS/init/OpenPLC/EV-Charger_Communications/webserver:/home/openplc/OpenPLC_v3/webserver
+      - /home/kali/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Communications/openplc:/home/openplc
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.11
+        
+        
+ 
+  
+  
 
 
 
 
 
-
-
-
-
-
-
-  placeholderPLC_Monorail:
-    image: openplc-docker
-    container_name: placeholderPLC_Monorail
-    user: root
-    ports:
-      - "8020:8080"
-      - "520:502"
-    cap_add:
-      - NET_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    command: >
-      bash -c "apt update &&
-               apt install -y net-tools &&
-               apt install -y iputils-ping &&
-               apt install -y iptables &&
-               apt install -y nmap &&
-               /home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Monorail:
-        ipv4_address: 192.168.101.10
+#  placeholderPLC_Monorail:
+#    image: openplc-docker
+#    container_name: placeholderPLC_Monorail
+#    user: root
+#    ports:
+#      - "8020:8080"
+#      - "520:502"
+#    cap_add:
+#      - NET_ADMIN
+#    security_opt:
+#      - apparmor:unconfined
+#    command: >
+#      bash -c "apt update &&
+#               apt install -y net-tools &&
+#               apt install -y iputils-ping &&
+#               apt install -y iptables &&
+#               apt install -y nmap &&
+#               /home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Monorail:
+#        ipv4_address: 192.168.101.10
 
 
 
@@ -131,75 +129,75 @@ services:
       network_Power-plant:
         ipv4_address: 192.168.102.2
 
-  Cooling-pump_Power-plant:
-    image: openplc-docker
-    container_name: Cooling-pump_Power-plant
-    ports:
-      - "8030:8080"
-      - "530:502"
-    command: >
-      bash -c "/home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Power-plant:
-        ipv4_address: 192.168.102.10
+#  Cooling-pump_Power-plant:
+#    image: openplc-docker
+#    container_name: Cooling-pump_Power-plant
+#    ports:
+#      - "8030:8080"
+#      - "530:502"
+#    command: >
+#      bash -c "/home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Power-plant:
+#        ipv4_address: 192.168.102.10
 
-  Geiger-counter_Power-plant:
-    image: openplc-docker
-    container_name: Geiger-counter_Power-plant
-    ports:
-      - "8031:8080"
-      - "531:502"
-    command: >
-      bash -c "/home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Power-plant:
-        ipv4_address: 192.168.102.11
+#  Geiger-counter_Power-plant:
+#    image: openplc-docker
+#    container_name: Geiger-counter_Power-plant
+#    ports:
+#      - "8031:8080"
+#      - "531:502"
+#    command: >
+#      bash -c "/home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Power-plant:
+#        ipv4_address: 192.168.102.11
 
-  Heat-sensor_Power-plant:
-    image: openplc-docker
-    container_name: Heat-sensor_Power-plant
-    ports:
-      - "8032:8080"
-      - "532:502"
-    command: >
-      bash -c "/home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Power-plant:
-        ipv4_address: 192.168.102.12
+#  Heat-sensor_Power-plant:
+#    image: openplc-docker
+#    container_name: Heat-sensor_Power-plant
+#    ports:
+#      - "8032:8080"
+#      - "532:502"
+#    command: >
+#      bash -c "/home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Power-plant:
+#        ipv4_address: 192.168.102.12
 
-  Inverter_Power-plant:
-    image: openplc-docker
-    container_name: Inverter_Power-plant
-    ports:
-      - "8033:8080"
-      - "533:502"
-    command: >
-      bash -c "/home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Power-plant:
-        ipv4_address: 192.168.102.13
+#  Inverter_Power-plant:
+#    image: openplc-docker
+#    container_name: Inverter_Power-plant
+#    ports:
+#      - "8033:8080"
+#      - "533:502"
+#    command: >
+#      bash -c "/home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Power-plant:
+#        ipv4_address: 192.168.102.13
 
-  Steam-turbine-CS_Power-plant:
-    image: openplc-docker
-    container_name: Steam-turbine-CS_Power-plant
-    ports:
-      - "8034:8080"
-      - "534:502"
-    command: >
-      bash -c "/home/openplc/run.sh"
-    volumes:
-      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
-    networks:
-      network_Power-plant:
-        ipv4_address: 192.168.102.14
+#  Steam-turbine-CS_Power-plant:
+#    image: openplc-docker
+#    container_name: Steam-turbine-CS_Power-plant
+#    ports:
+#      - "8034:8080"
+#      - "534:502"
+#    command: >
+#      bash -c "/home/openplc/run.sh"
+#    volumes:
+#      - /home/kali/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#    networks:
+#      network_Power-plant:
+#        ipv4_address: 192.168.102.14
 
 
 
@@ -256,9 +254,11 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
+               /home/user/install_mbpoll.sh &&
                /usr/sbin/sshd -D"
     volumes:
       - Laptop_data:/home/user
+      - /home/kali/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
     depends_on:
       - guacd_Laptop
       - guac_mysql_Laptop
@@ -276,6 +276,9 @@ services:
   guacd_EV-charger:
     image: guacamole/guacd
     container_name: guacd_EV-charger
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.50
 
   guac_mysql_EV-charger:
     image: mysql
@@ -288,6 +291,9 @@ services:
     volumes:
       - guac_mysql_data_EV-charger:/var/lib/mysql
       - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.51
 
   guacamole_EV-charger:
     image: guacamole/guacamole
@@ -304,6 +310,9 @@ services:
       MYSQL_PASSWORD: password
       GUACD_HOSTNAME: guacd_EV-charger
       GUACD_PORT: 4822
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.52
 
   EV-charger:
     image: rastasheep/ubuntu-sshd
@@ -319,13 +328,18 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
+               /home/user/install_mbpoll.sh &&
                /usr/sbin/sshd -D"
     volumes:
       - EV-charger_data:/home/user
+      - /home/kali/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
     depends_on:
       - guacd_EV-charger
       - guac_mysql_EV-charger
       - guacamole_EV-charger
+    networks:
+      network_EV-charger:
+        ipv4_address: 192.168.100.53
 
 
 
@@ -382,9 +396,11 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
+               /home/user/install_mbpoll.sh &&
                /usr/sbin/sshd -D"
     volumes:
       - Monorail_data:/home/user
+      - /home/kali/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
     depends_on:
       - guacd_Monorail
       - guac_mysql_Monorail
@@ -445,9 +461,11 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
+               /home/user/install_mbpoll.sh &&
                /usr/sbin/sshd -D"
     volumes:
       - Power-plant_data:/home/user
+      - /home/kali/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
     depends_on:
       - guacd_Power-plant
       - guac_mysql_Power-plant

@@ -4,19 +4,16 @@ group=$(id -gn)
 
 
 
-echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER--------------------"
+echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER AND CHANGING OWNER OF ALL FILES TO LOGGED IN USER--------------------"
 sudo mkdir -p GamifiedICS
-sudo chown $user:$group ./GamifiedICS
+sudo chown $user:$group -R ./GamifiedICS
 
 echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER--------------------"
-sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml ./GamifiedICS
+sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml scripts ./GamifiedICS
 cd GamifiedICS
 
 echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
 sudo mkdir -p wordpressData
-
-echo "--------------------CHANGING OWNER TO CURRENTLY LOGGED IN USER--------------------"
-sudo chown $user:$group ./wordpressData
 
 echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
 sudo tar -xf wordpress-data_Power-plant.tar -C ./wordpressData
@@ -64,5 +61,16 @@ sudo docker build -t openplc-docker .
 
 
 
+echo "--------------------UNZIPPING OPENPLC 'OPENPLC_V3' FOLDERS--------------------"
+cd ../init/OpenPLC/EV-charger/Communications/openplc
+sudo tar -xzf OpenPLC_v3.tar.gz -C ./OpenPLC_v3
+cd ..
+cd ../Inverter/openplc
+sudo tar -xzf OpenPLC_v3.tar.gz -C ./OpenPLC_v3
+
+
+
+
 echo "--------------------STARTING UP CONTAINERS--------------------"
+cd /home/kali/Desktop/GamifiedICS
 sudo docker compose up -d
