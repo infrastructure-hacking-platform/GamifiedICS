@@ -1,0 +1,6 @@
+# file to define which directories Git should ignore when doing a "git add *". /Saved/Autosaves, /Logs/, /webcache_4430, and /Crashes were all taking up a ton of space and are unneccessary for the project, they are just data saved by the Unreal runtime and have no effect on running the project
+
+Saved/Autosaves/
+Saved/Logs/
+Saved/webcache_4430/
+Saved/Crashes/

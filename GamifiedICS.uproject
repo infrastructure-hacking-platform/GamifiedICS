@@ -28,6 +28,11 @@
 		},
 		{
 			"Name": "HttpBlueprint",
+			"Name": "GameplayStateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "WarwolfMissionSystem",
 			"Enabled": true
 		}
 	]
