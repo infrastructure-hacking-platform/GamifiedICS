@@ -4,13 +4,16 @@ group=$(id -gn)
 
 
 
-echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER AND CHANGING OWNER OF ALL FILES TO LOGGED IN USER--------------------"
+echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER--------------------"
 sudo mkdir -p GamifiedICS
-sudo chown $user:$group -R ./GamifiedICS
 
-echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER--------------------"
+echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER AND ASSIGNING OWNERSHIP TO CURRENT USER--------------------"
 sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml scripts ./GamifiedICS
+sudo chown $user:$group ./GamifiedICS
 cd GamifiedICS
+
+echo "--------------------CREATING DOCKER COMPOSE 'user' VARIABLE FOR PATH MOUNTING--------------------"
+echo "user=$(whoami)" > .env
 
 echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
 sudo mkdir -p wordpressData
@@ -71,6 +74,9 @@ sudo tar -xzf OpenPLC_v3.tar.gz -C ./OpenPLC_v3
 
 
 
-echo "--------------------STARTING UP CONTAINERS--------------------"
+echo "--------------------CHANGING LINE ENDINGS TO UNIX-STYLE--------------------"
 cd /home/kali/Desktop/GamifiedICS
+sudo find . -type f \( -name "*.sh" -o -name "*.py" \) -exec dos2unix {} +
+
+echo "--------------------STARTING UP CONTAINERS--------------------"
 sudo docker compose up -d
