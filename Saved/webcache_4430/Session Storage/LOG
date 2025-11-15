@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-2025/11/13-12:11:25.463 47ac Reusing MANIFEST C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Session Storage/MANIFEST-000001
-2025/11/13-12:11:25.472 47ac Recovering log #3
-2025/11/13-12:11:25.473 47ac Reusing old log C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Session Storage/000003.log 
-=======
-2025/11/02-16:19:19.076 2428 Reusing MANIFEST C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Session Storage/MANIFEST-000001
-2025/11/02-16:19:19.080 2428 Recovering log #3
-2025/11/02-16:19:19.081 2428 Reusing old log C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Session Storage/000003.log 
->>>>>>> main
+2025/11/15-16:00:48.293 49d0 Creating DB C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Session Storage since it was missing.
+2025/11/15-16:00:48.300 49d0 Reusing MANIFEST C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Session Storage/MANIFEST-000001
+2025/11/15-16:00:48.309 49d0 Recovering log #3
+2025/11/15-16:00:48.309 49d0 Reusing old log C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Session Storage/000003.log 
