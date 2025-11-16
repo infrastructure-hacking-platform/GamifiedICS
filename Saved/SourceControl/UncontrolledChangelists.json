@@ -1,0 +1,53 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/D/ZJ/7XIILQIZGAITNHWRWX5SES.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/7/8K/3R69INOISTBMD9IDVTUBGN.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/5/MQ/EC5XG0ITDV6X3EKFYHHRBF.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/C/HF/D0J43SG35B06YYIAHARBCM.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/0/0A/XAMO4JDM1RLOLYBYRYHR17.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/D/9I/RDUBVAQLNC7Y5MD6OT4EIC.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/C/H8/T60J0J800IJJHNKNI5YQY8.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/5/SK/FCTPXQONLWV2XWF7XQGZOH.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/3/2U/Z3OBUQJZ0KG70DYETOXUII.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/B/UH/D7MAA3SZ5FTL58KBAYD8VA.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/9/JW/89LJ8RWMQN77S3KERKYL85.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/8/RG/U8BUT1SF6SC4P821ZO6RWL.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/2/9X/6ZEEUW7ODWDG9ZCDAFX255.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/3/EL/PICTO9ZQY38DL0SXR3HRRO.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/E/FQ/B11SYRWRFM1Z5VDGT27TBE.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/D/S3/OMPJ4PYNKG8JXQCC3WSTDQ.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/4/UA/EU3WXVOA2560TZ88JNLEYS.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/E/XF/ADE7V6F8BI0ZET1O5VUQ3U.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/3/Z1/9P6MLD1CUWUOKGSZP6OEIQ.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/4/EV/8P4YSHC46ANS1CIRY31DTH.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/9/DF/D6TOXVKPYKXZ7QLBIQKACU.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/9/7T/0Q536E7TKEIU7BDT52WJKK.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/B/ZT/UE2IESC5N6YGDHSWV6RU4E.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/C/93/IXDOB72E95SB0T5NT8387M.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/E/XE/YPQAJQX4JZBAOXBHP923VY.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/LevelSequence/OpeningCinematic.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/C/F5/X7ZSEEMJKX9MI5TVSTJESO.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/D/FA/NMTU8I4QPYNV3OT0KW9S0P.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/6/PU/ES58LP70XRQRZ9HVQ8OE22.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/5/B1/6UUD8R9GZOR2A3OJ2B60WO.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/6/2V/SZ0CWQQ32522XW7IAKHCJC.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/C/5D/EDHUMQIC7KHN1M640S30V7.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/7/V5/9EF7XPRL21JYV50GVL3T65.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/A/PA/RLGQYUYGOWD5SXD73WOBW7.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/E/88/RW9HDXMKW3L243I6HPIFYY.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/7/XA/LTWXKF81YXE61JG7XGQVX1.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/0/56/G4XI8E7WOCOAMYZ6X2IS2A.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/3/7O/10AEAUDB45C098AVAB7UPQ.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/D/55/XCFEN2PCVZHULO8CREPMYI.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/6/OD/7238VCYDEW1A33JMPQFDC2.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/2/26/GG15TEMJBVISXZV431IMQT.uasset",
+				"C:/Users/kensh/Documents/GitHub/GamifiedICS/Content/__ExternalActors__/_GameMaps/City_Map/9/0E/J4XRQ3E3I02FVSOU8XT9FW.uasset"
+			]
+		}
+	]
+}
