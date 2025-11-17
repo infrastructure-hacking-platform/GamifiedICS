@@ -8,17 +8,17 @@ echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER-----------------
 sudo mkdir -p /home/$user/Desktop/GamifiedICS/
 
 echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER AND ASSIGNING OWNERSHIP TO CURRENT USER--------------------"
-sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml scripts /home/$user/Desktop/GamifiedICS/
+sudo mv init OpenPLC-Setup scripts .env docker-compose.yaml "VM Setup Guide.docx" /home/$user/Desktop/GamifiedICS/
 sudo chown -R $user:$group /home/$user/Desktop/GamifiedICS/
 
 echo "--------------------CREATING DOCKER COMPOSE 'user' VARIABLE FOR PATH MOUNTING--------------------"
 echo "user=$(whoami)" > /home/$user/Desktop/GamifiedICS/.env
 
-echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
-sudo mkdir -p /home/$user/Desktop/GamifiedICS/wordpressData/
+#echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
+#sudo mkdir -p /home/$user/Desktop/GamifiedICS/wordpressData/
 
-echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
-sudo tar -xf wordpress-data_Power-plant.tar -C /home/$user/Desktop/GamifiedICS/wordpressData/
+#echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
+#sudo tar -xf wordpress-data_Power-plant.tar -C /home/$user/Desktop/GamifiedICS/wordpressData/
 
 
 
@@ -68,4 +68,4 @@ echo "--------------------CHANGING LINE ENDINGS TO UNIX-STYLE-------------------
 sudo find /home/$user/Desktop/GamifiedICS/ -type f \( -name "*.sh" -o -name "*.py" \) -exec dos2unix {} +
 
 echo "--------------------STARTING UP CONTAINERS--------------------"
-sudo docker compose up -d
+sudo docker compose -f /home/$user/Desktop/GamifiedICS/docker-compose.yaml up -d # do -f to specify the absolute location of the 'docker-compose.yaml' file
