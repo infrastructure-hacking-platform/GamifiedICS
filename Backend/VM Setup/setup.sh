@@ -5,21 +5,20 @@ group=$(id -gn)
 
 
 echo "--------------------CREATING 'GamifiedICS' PROJECT FOLDER--------------------"
-sudo mkdir -p GamifiedICS
+sudo mkdir -p /home/$user/Desktop/GamifiedICS/
 
 echo "--------------------MOVING PROJECT FILES TO PROJECT FOLDER AND ASSIGNING OWNERSHIP TO CURRENT USER--------------------"
-sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml scripts ./GamifiedICS
-sudo chown $user:$group ./GamifiedICS
-cd GamifiedICS
+sudo mv wordpress-data_Power-plant.tar init OpenPLC-Setup docker-compose.yaml scripts /home/$user/Desktop/GamifiedICS/
+sudo chown -R $user:$group /home/$user/Desktop/GamifiedICS/
 
 echo "--------------------CREATING DOCKER COMPOSE 'user' VARIABLE FOR PATH MOUNTING--------------------"
-echo "user=$(whoami)" > .env
+echo "user=$(whoami)" > /home/$user/Desktop/GamifiedICS/.env
 
 echo "--------------------CREATING WORDPRESSDATA FOLDER--------------------"
-sudo mkdir -p wordpressData
+sudo mkdir -p /home/$user/Desktop/GamifiedICS/wordpressData/
 
 echo "--------------------EXTRACTING WORDPRESS .TAR FILES TO WORDPRESSDATA--------------------"
-sudo tar -xf wordpress-data_Power-plant.tar -C ./wordpressData
+sudo tar -xf wordpress-data_Power-plant.tar -C /home/$user/Desktop/GamifiedICS/wordpressData/
 
 
 
@@ -48,35 +47,25 @@ sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
 
 
-echo "--------------------CDING INTO INIT--------------------"
-cd init
-
 echo "--------------------EXPORTING GUACAMOLE DB INITIALIZATION FILE--------------------"
-sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql | sudo tee initdb.sql > /dev/null
+sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql | sudo tee /home/$user/Desktop/GamifiedICS/init/initdb.sql > /dev/null
 
 
-
-echo "--------------------CDING TO OPENPLC FOLDER--------------------"
-cd ../OpenPLC-Setup
 
 echo "--------------------BUILDING OPENPLC IMAGE--------------------"
-sudo docker build -t openplc-docker .
+sudo docker build -t openplc-docker /home/$user/Desktop/GamifiedICS/OpenPLC-Setup/
 
 
 
 echo "--------------------UNZIPPING OPENPLC 'OPENPLC_V3' FOLDERS--------------------"
-cd ../init/OpenPLC/EV-charger/Communications/openplc
-sudo tar -xzf OpenPLC_v3.tar.gz -C ./OpenPLC_v3
-cd ..
-cd ../Inverter/openplc
-sudo tar -xzf OpenPLC_v3.tar.gz -C ./OpenPLC_v3
+sudo tar -xzf /home/$user/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Communications/openplc/OpenPLC_v3.tar.gz -C /home/$user/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Communications/openplc/OpenPLC_v3/
+sudo tar -xzf /home/$user/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Inverter/openplc/OpenPLC_v3.tar.gz -C /home/$user/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Inverter/openplc/OpenPLC_v3/
 
 
 
 
 echo "--------------------CHANGING LINE ENDINGS TO UNIX-STYLE--------------------"
-cd /home/kali/Desktop/GamifiedICS
-sudo find . -type f \( -name "*.sh" -o -name "*.py" \) -exec dos2unix {} +
+sudo find /home/$user/Desktop/GamifiedICS/ -type f \( -name "*.sh" -o -name "*.py" \) -exec dos2unix {} +
 
 echo "--------------------STARTING UP CONTAINERS--------------------"
 sudo docker compose up -d
