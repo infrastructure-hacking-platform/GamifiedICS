@@ -8,7 +8,7 @@ services:
     command: >
       bash -c "/home/openplc/scripts/run.sh"
     volumes:
-      - /home/${user}/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Inverter/openplc:/home/openplc
+      - ./init/OpenPLC/EV-charger/Inverter/openplc:/home/openplc
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.10
@@ -32,7 +32,7 @@ services:
                apt install -y nmap &&
                /home/openplc/scripts/run.sh"
     volumes:
-      - /home/${user}/Desktop/GamifiedICS/init/OpenPLC/EV-charger/Communications/openplc:/home/openplc
+      - ./init/OpenPLC/EV-charger/Communications/openplc:/home/openplc
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.11
@@ -65,7 +65,7 @@ services:
 #               apt install -y nmap &&
 #               /home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Monorail:
 #        ipv4_address: 192.168.101.10
@@ -122,7 +122,7 @@ services:
 #               apache2-foreground"
 #    volumes:
       #- wordpress_data_Power-plant:/var/www/html
-#      - /home/${user}/Desktop/GamifiedICS/wordpressData/wordpress-data_Power-plant/html:/var/www/html
+#      - ./wordpressData/wordpress-data_Power-plant/html:/var/www/html
 #    depends_on:
 #      - sql-server_Power-plant
 #    networks:
@@ -138,7 +138,7 @@ services:
 #    command: >
 #      bash -c "/home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Power-plant:
 #        ipv4_address: 192.168.102.10
@@ -152,7 +152,7 @@ services:
 #    command: >
 #      bash -c "/home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Power-plant:
 #        ipv4_address: 192.168.102.11
@@ -166,7 +166,7 @@ services:
 #    command: >
 #      bash -c "/home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Power-plant:
 #        ipv4_address: 192.168.102.12
@@ -180,7 +180,7 @@ services:
 #    command: >
 #      bash -c "/home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Power-plant:
 #        ipv4_address: 192.168.102.13
@@ -194,7 +194,7 @@ services:
 #    command: >
 #      bash -c "/home/openplc/run.sh"
 #    volumes:
-#      - /home/${user}/Desktop/GamifiedICS/OpenPLC-Setup:/home/openplc/scripts
+#      - ./OpenPLC-Setup:/home/openplc/scripts
 #    networks:
 #      network_Power-plant:
 #        ipv4_address: 192.168.102.14
@@ -258,7 +258,7 @@ services:
 #               /usr/sbin/sshd -D"
 #    volumes:
 #      - Laptop_data:/home/user
-#      - /home/${user}/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
+#      - ./scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
 #    depends_on:
 #      - guacd_Laptop
 #      - guac_mysql_Laptop
@@ -335,8 +335,8 @@ services:
                /usr/sbin/sshd -D"
     volumes:
       - EV-charger_data:/home/user
-      - /home/${user}/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
-      - /home/${user}/Desktop/GamifiedICS/scripts/poller.py:/home/user/poller.py
+      - ./scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
+      - ./scripts/poller.py:/home/user/poller.py
     depends_on:
       - guacd_EV-charger
       - guac_mysql_EV-charger
@@ -406,7 +406,7 @@ services:
 #               /usr/sbin/sshd -D"
 #    volumes:
 #      - Monorail_data:/home/user
-#      - /home/${user}/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
+#      - ./scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
 #    depends_on:
 #      - guacd_Monorail
 #      - guac_mysql_Monorail
@@ -471,7 +471,7 @@ services:
 #               /usr/sbin/sshd -D"
 #    volumes:
 #      - Power-plant_data:/home/user
-#      - /home/${user}/Desktop/GamifiedICS/scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
+#      - ./scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
 #    depends_on:
 #      - guacd_Power-plant
 #      - guac_mysql_Power-plant
