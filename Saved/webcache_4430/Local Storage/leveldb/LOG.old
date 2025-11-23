@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-2025/10/30-12:48:33.713 4968 Reusing MANIFEST C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2025/10/30-12:48:33.724 4968 Recovering log #3
-2025/10/30-12:48:33.725 4968 Reusing old log C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000003.log 
-=======
-2025/10/29-12:46:16.249 4790 Reusing MANIFEST C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2025/10/29-12:46:16.257 4790 Recovering log #3
-2025/10/29-12:46:16.258 4790 Reusing old log C:/Users/umaso/Documents/Unreal Projects/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000003.log 
->>>>>>> main
+2025/11/15-16:00:46.518 49d0 Creating DB C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb since it was missing.
+2025/11/15-16:00:46.532 49d0 Reusing MANIFEST C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
+2025/11/15-16:00:46.543 49d0 Recovering log #3
+2025/11/15-16:00:46.543 49d0 Reusing old log C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Saved/webcache_4430\Local Storage\leveldb/000003.log 

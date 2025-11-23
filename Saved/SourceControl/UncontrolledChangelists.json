@@ -5,7 +5,13 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Blueprints/BP_FPMovementPlayer.uasset"
+				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Blueprints/BP_FPMovementPlayer.uasset",
+				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Input/IMC_Default.uasset",
+				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Input/Actions/IA_Skip.uasset",
+				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Blueprints/Interface/BP_PlayerVariablesInterface.uasset",
+				"C:/Users/Thaumaturge/Desktop/Senior Project/Gamified ICS/GamifiedICS/Content/FPMovement/Player/Widgets/Tutorial/TutorialPopUP1.uasset",
+				"E:/Non Steam games/UE_5.5/Engine/Plugins/Interchange/Assets/Content/gltf/M_Default.uasset",
+				"E:/Non Steam games/UE_5.5/Engine/Plugins/Interchange/Assets/Content/gltf/M_ClearCoat.uasset"
 			]
 		}
 	]
