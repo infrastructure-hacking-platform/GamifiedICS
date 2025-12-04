@@ -1,0 +1,9 @@
+# Ensure Unix-style line endings for shell scripts and common text/code files (prevents needing to do "dos2unix" on every single file that requires it)
+*.sh     text eol=lf
+*.py     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.json   text eol=lf
+*.md     text eol=lf
+*.txt    text eol=lf
+*.conf   text eol=lf
