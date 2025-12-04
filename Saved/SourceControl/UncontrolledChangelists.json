@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/PLC_Interactions/EV-charger_Explosion.uasset",
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/FPMovement/Player/Input/IMC_Default.uasset",
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/UINav/Widgets/UINavSetIP.uasset",
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/PLC_Interactions/SetIP.uasset",
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/PLC_Interactions/Set_IP_Interface.uasset",
+				"C:/Users/julie/Git/Projects/GamifiedICS/GamifiedICS/Content/PLC_Interactions/p.uasset"
+			]
+		}
+	]
+}
