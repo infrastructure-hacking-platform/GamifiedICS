@@ -290,7 +290,7 @@ services:
       MYSQL_PASSWORD: password
     volumes:
       - guac_mysql_data_EV-charger:/var/lib/mysql
-      - ./init/Guacamole/EV-charger/guac.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql:ro
     networks:
       network_EV-charger:
         ipv4_address: 192.168.100.51
@@ -315,7 +315,7 @@ services:
         ipv4_address: 192.168.100.52
 
   EV-charger:
-    image: ev-charger
+    image: rastasheep/ubuntu-sshd
     container_name: EV-charger
     command: >
       bash -c "id -u user &>dev/null || useradd -s /bin/bash user &&
@@ -328,11 +328,14 @@ services:
                apt install -y iputils-ping &&
                apt install -y iptables &&
                apt install -y nmap &&
+               apt install -y python3 python3-pip &&
+               python3 -m pip install flask pymodbus &&
+               /home/user/install_mbpoll.sh &&
                python3 /home/user/poller.py &
                /usr/sbin/sshd -D"
-# NOTE: for the line "python3 /home/user/poller.py &" (2 lines above this one), the single & is intentional. It makes that command run in the background, allowing the container to continue onto "/usr/sbin/sshd -D" immediately. Otherwise, it would wait until poller.py exited, which it never should, meaning "/usr/sbin/sshd -D" would never start up (it's the entrypoint command, meaning it is strictly required for the container to start up correctly.)
     volumes:
       - EV-charger_data:/home/user
+      - ./scripts/install_mbpoll.sh:/home/user/install_mbpoll.sh
       - ./scripts/poller.py:/home/user/poller.py
     depends_on:
       - guacd_EV-charger
