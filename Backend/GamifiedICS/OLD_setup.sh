@@ -59,9 +59,6 @@ sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql | 
 echo "--------------------BUILDING OPENPLC IMAGE--------------------"
 sudo docker build -t openplc-docker "$install_path/OpenPLC-Setup/"
 
-echo "--------------------BUILDING 'EV-charger' IMAGE--------------------"
-sudo docker build -f "$install_path/init/Guacamole/EV-charger/Dockerfile" -t ev-charger "$install_path" # -f flag specifies where the Dockerfile is located, -t specifies the image name, the last parameter ("$install_path") specifies the build context, which determines how you reference paths inside the Dockerfile (ex: "COPY /scripts/script.sh [path inside container]" implicitly copies [build context]/scripts/script.sh, so GamifiedICS/scripts/script.sh in this context)
-
 
 
 echo "--------------------UNZIPPING OPENPLC 'OPENPLC_V3' FOLDERS--------------------"
